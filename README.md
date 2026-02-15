@@ -2,4 +2,4 @@
 Practical implementation of Azure AI Foundry agent (V2 API) with Agent Framework adapter.
 
 > [!Warning]
-> Documentation part to be added shortly
+> Updating the code to reflect pre-release changes.
