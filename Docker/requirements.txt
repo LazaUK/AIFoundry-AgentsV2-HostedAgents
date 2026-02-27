@@ -1,0 +1,6 @@
+azure-ai-agentserver-agentframework==1.0.0b14
+azure-ai-projects==2.0.0b3
+pytest
+azure-identity
+python-dotenv
+azure-monitor-opentelemetry
