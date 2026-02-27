@@ -1,0 +1,25 @@
+name: msft-learn-mcp-agent
+description: This Agent can search Microsoft Learn documentation using MCP tool.
+metadata:
+  tags:
+    - AI Foundry Hosted Agent
+    - MSFT Learn MCP Tool
+    - Microsoft Agent Framework
+  authors:
+    - laziz_turakulov
+template:
+  name: msft-learn-mcp-agent
+  kind: hosted
+  protocols:
+    - protocol: responses
+      version: v1
+  environment_variables:
+    - name: AZURE_FOUNDRY_PROJECT_ENDPOINT
+      value: ${AZURE_FOUNDRY_PROJECT_ENDPOINT}
+    - name: AZURE_FOUNDRY_GPT_MODEL
+      value: "{{chat}}"
+resources:
+  - kind: model
+    id: gpt-4.1-mini
+    name: chat
+  
