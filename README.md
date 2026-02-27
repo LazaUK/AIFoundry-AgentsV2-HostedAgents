@@ -1,6 +1,6 @@
 # Azure AI Foundry: Hosted Agent with MCP Tool (Agents v2)
 
-This repo demonstrates the deployment of a **Hosted Agent** to **Microsoft Foundry Agent Service**, with background process provisoning container app runtime for the use by the **Microsoft Agent Framework** and **MCP (Model Context Protocol)** tool integration.
+This repo demonstrates the deployment of a **Hosted Agent** to **Microsoft Foundry Agent Service**. The provisoning process setups container ap runtime to host **Microsoft Agent Framework**-based solution and **MCP (Model Context Protocol)** tool integration.
 
 > [!TIP]
 > Specifics of Foundry's Hosted Agents is described on this Microsoft Foundry [documentation page](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/deploy-hosted-agent).
