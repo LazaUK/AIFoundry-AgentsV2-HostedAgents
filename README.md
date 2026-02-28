@@ -1,6 +1,6 @@
 # Azure AI Foundry: Hosted Agent with MCP Tool (Agents v2)
 
-This repo demonstrates the deployment of a **Hosted Agent** to **Microsoft Foundry Agent Service**. The provisoning process setups container ap runtime to host **Microsoft Agent Framework**-based solution and **MCP (Model Context Protocol)** tool integration.
+This repo demonstrates the deployment of a **Hosted Agent** to **Microsoft Foundry Agent Service**. The provisoning process sets up a container app runtime to host **Microsoft Agent Framework**-based solution and **MCP (Model Context Protocol)** tool integration.
 
 > [!TIP]
 > Specifics of Foundry's Hosted Agents is described on this Microsoft Foundry [documentation page](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/deploy-hosted-agent).
@@ -13,18 +13,17 @@ This repo demonstrates the deployment of a **Hosted Agent** to **Microsoft Found
 - [Part 5: Testing the Agent](#part-5-testing-the-agent)
 
 ## Part 1: Prerequisites
-Before deploying this solution, ensure you have:
+Before deploying this solution, ensure that you have:
 
 - **Azure Subscription** with access to provision **Azure AI Foundry**,
-- **Azure Container Registry (ACR)** instance for the Docker image hosting,
+- **Azure Container Registry (ACR)** instance for Docker image hosting,
 - **Docker Desktop** installed (OPTIONAL - for local builds),
 - **Azure CLI** installed locally.
 
 ## Part 2: Environment Setup
 
 ### 2.1 Azure AI Foundry Setup
-
-Create an Azure AI Foundry **account** and **project** resources and deploy required GPT model (e.g., **gpt-4.1-mini**).
+Create an Azure AI Foundry **account** and **project** resources and deploy a required GPT model (e.g., **gpt-4.1-mini**).
 
 > [!IMPORTANT]
 > This solution requires an **Azure AI Foundry Project endpoint**, not an Azure OpenAI endpoint.
@@ -35,7 +34,7 @@ Create an Azure AI Foundry **account** and **project** resources and deploy requ
 | Azure AI Foundry | `https://<resource>.services.ai.azure.com/api/projects/<project-id>` |
 
 ### 2.2 Capability Host
-Hosted agents require an account-level capability host with public hosting enabled. Create the `capability_host.json` file or re-use the provided one:
+Hosted agents require an account-level capability host with public hosting enabled. Create the `capability_host.json` file or reuse the provided one:
 
 ``` JSON
 {
@@ -61,15 +60,14 @@ az rest --method get --url "https://management.azure.com/subscriptions/[SUBSCRIP
 ### 2.3 RBAC Permissions
 Assign the following roles to enable the hosted agent to pull from ACR and create agents:
 
-**On Azure Container Registry (ACR)** — assign one of these roles to both Foundry Account and Project managed identities:
+**On Azure Container Registry (ACR)** — assign one of these roles to both the Foundry Account and Project managed identities:
 - `Container Registry Repository Reader`
 - `AcrPull`
 
-**On Foundry Account resource** — assign this role to Foundry Project managed identity:
+**On Foundry Account resource** — assign this role to the Foundry Project managed identity:
 - `Azure AI User`
 
 ### 2.4 Environment Variables
-
 Configure the following environment variables:
 
 | Environment Variable             | Description                                                                                                         |
@@ -82,7 +80,7 @@ Configure the following environment variables:
 ### 3.1 Build the Image
 
 > [!IMPORTANT]
-> Always build for `linux/amd64` platform. Images built on Apple Silicon (ARM64) or other architectures will not work as Hosted Agents.
+> Always build for the `linux/amd64` platform. Images built on Apple Silicon (ARM64) or other architectures will not work as Hosted Agents.
 
 ``` PowerShell
 docker build --platform linux/amd64 -t <YOUR_ACR>.azurecr.io/mslearn-mcp-hostedagentv2:v1 .
@@ -103,7 +101,7 @@ docker push <YOUR_ACR>.azurecr.io/mslearn-mcp-hostedagentv2:v1
 
 ### 3.4 Alternative: Use Pre-built Image from GHCR
 
-If you don't want to build the image locally, import pre-built Docker image from GitHub Container Registry to your ACR:
+If you don't want to build the image locally, import the pre-built Docker image from GitHub Container Registry to your ACR:
 
 ``` PowerShell
 az acr import --name <YOUR_ACR> --source ghcr.io/lazauk/mslearn-mcp-hostedagentv2:v1.0.0 --image mslearn-mcp-hostedagentv2:v1
@@ -114,7 +112,7 @@ This requires no local Docker installation and copies the image between GitHub a
 ## Part 4: Foundry Deployment
 
 ### 4.1 Create Hosted Agent Version
-Use the provided Jupyter notebook `Foundry_AgentsV2_HostedAgent.ipynb` or run this Python code:
+Use the provided Jupyter notebook `Foundry_AgentsV2_HostedAgent.ipynb` to initialise the client and create the version, or run this Python code:
 
 ``` Python
 from azure.ai.projects import AIProjectClient
@@ -152,13 +150,12 @@ Option 2 — Azure CLI:
 az cognitiveservices agent start --account-name [ACCOUNTNAME] --project-name [PROJECTNAME] --name msft-docs-agent-v2 --agent-version 1
 ```
 
-### 4.3 Publish as Application
-In the Azure AI Foundry portal, publish your deployed agent as an Application to get a stable endpoint for testing.
+### 4.3 Publish the Agent
+In the Azure AI Foundry portal, publish your hosted agent get a managed endpoint for interactions via Responses API.
 
 ## Part 5: Testing the Agent
 
 ### 5.1 Test in Foundry UI
-
-Navigate to your hosted agent in Azure AI Foundry and ask any Azure related questions. The agent should be able to use its MCP tool to retrieve required information from Azure documentation.
+Navigate to your hosted agent in Azure AI Foundry and ask any Azure-related questions. The agent should use its MCP tool to retrieve the required information from Azure documentation.
 
 ![Hosted_Agent_UI](images/Hosted_Agent_UI.png)
