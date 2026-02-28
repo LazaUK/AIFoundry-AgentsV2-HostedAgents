@@ -16,7 +16,7 @@ import asyncio
 import os
 from azure.identity.aio import DefaultAzureCredential
 from agent_framework_azure_ai import AzureAIAgentClient
-from agent_framework import HostedMCPTool, ChatMessageStore
+from agent_framework import HostedWebSearchTool, ChatMessageStore
 from azure.ai.agentserver.agentframework import from_agent_framework
 from azure.ai.agentserver.agentframework.persistence.agent_thread_repository import AgentThreadRepository
 
@@ -48,13 +48,8 @@ async def main():
         ) as client:
             agent = client.create_agent(
                 name="Microsoft Documentation Agent",
-                instructions="You are an agent, which can use its MCP documentation tool to answer end user questions about Microsoft products. Limit your response to 2 paragraphs.",
-                tools=HostedMCPTool(
-                    name="Microsoft Learn MCP",
-                    url="https://learn.microsoft.com/api/mcp",
-                    approval_mode="never_require"
-                ),
-                chat_message_store_factory=lambda: ChatMessageStore(),  # fresh store per request, no Foundry history
+                instructions="You are a helpful assistant that answers questions about Microsoft products and Azure services from your training knowledge. Limit your response to 2 paragraphs.",
+                chat_message_store_factory=lambda: ChatMessageStore(),
             )
             print(f"Agent ready, starting server...")
             # server = from_agent_framework(agent, thread_repository=NoOpThreadRepository())
