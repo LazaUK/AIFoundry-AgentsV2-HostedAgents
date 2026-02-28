@@ -157,6 +157,6 @@ In the Azure AI Foundry portal, publish your hosted agent get a managed endpoint
 ## Part 5: Testing the Agent
 
 ### 5.1 Test in Foundry UI
-Navigate to your hosted agent in Azure AI Foundry and ask any Azure-related questions. The agent should use its MCP tool to retrieve the required information from Azure documentation.
+Navigate to your hosted agent in Azure AI Foundry and ask any questions. The hosted agent should use its internal knowledge to answer them. As a next potential step, you can customise and enhance your agent's capability with additional tools and knowledge sources.
 
 ![Hosted_Agent_UI](images/Hosted_Agent_UI.png)
