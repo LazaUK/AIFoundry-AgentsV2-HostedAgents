@@ -16,7 +16,7 @@ This repo demonstrates the deployment of a **Hosted Agent** to **Microsoft Found
 Before deploying this solution, ensure that you have:
 
 - **Azure Subscription** with access to provision **Azure AI Foundry**,
-- **Azure Container Registry (ACR)** instance for Docker image hosting,
+- **Azure Container Registry** instance for Docker image hosting,
 - **Docker Desktop** installed (OPTIONAL - for local builds),
 - **Azure CLI** installed locally.
 
@@ -86,20 +86,20 @@ Configure the following environment variables:
 docker build --platform linux/amd64 -t <YOUR_ACR>.azurecr.io/mslearn-mcp-hostedagentv2:v1 .
 ```
 
-### 3.2 Test the Container Locally
+You can test if the container starts locally:
 
 ``` PowerShell
 docker run --rm -it -e AZURE_FOUNDRY_PROJECT_ENDPOINT="https://<resource>.services.ai.azure.com/api/projects/<project>" -e AZURE_FOUNDRY_GPT_MODEL="gpt-4.1-mini" -p 8088:8088 <ACR>.azurecr.io/mslearn-mcp-hostedagentv2:v1
 ```
 
-### 3.3 Push to ACR
+If successful, push the new Docker image to ACR:
 
 ``` PowerShell
 az acr login --name <YOUR_ACR>
 docker push <YOUR_ACR>.azurecr.io/mslearn-mcp-hostedagentv2:v1
 ```
 
-### 3.4 Alternative: Use Pre-built Image from GHCR
+### 3.2 ALTERNATIVE: Use Pre-built Image from GHCR
 
 If you don't want to build the image locally, import the pre-built Docker image from GitHub Container Registry to your ACR:
 
