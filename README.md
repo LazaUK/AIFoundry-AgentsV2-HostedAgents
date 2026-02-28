@@ -140,11 +140,12 @@ agent = client.agents.create_version(
 ```
 
 ### 4.2 Start Agent Deployment
-Option 1 — Azure Portal:
+
+- Option 1 — Azure Portal:
 
   <sup>Go to https://ai.azure.com, open your agent and click `Start agent deployment`.</sup>
 
-Option 2 — Azure CLI:
+- Option 2 — Azure CLI:
 
 ``` PowerShell
 az cognitiveservices agent start --account-name [ACCOUNTNAME] --project-name [PROJECTNAME] --name msft-docs-agent-v2 --agent-version 1
