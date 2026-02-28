@@ -1,6 +1,6 @@
 # Azure AI Foundry: Hosted Agent with MCP Tool (Agents v2)
 
-This repo demonstrates the deployment of a **Hosted Agent** to **Microsoft Foundry Agent Service**. The provisoning process sets up a container app runtime to host **Microsoft Agent Framework**-based solution and **MCP (Model Context Protocol)** tool integration.
+This repo demonstrates the deployment of a **Hosted Agent** to **Microsoft Foundry Agent Service**. The provisoning process sets up a container app runtime to host **Microsoft Agent Framework**-based solution.
 
 > [!TIP]
 > Specifics of Foundry's Hosted Agents is described on this Microsoft Foundry [documentation page](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/hosted-agents).
@@ -107,7 +107,7 @@ If you don't want to build the image locally, import the pre-built Docker image 
 az acr import --name <YOUR_ACR> --source ghcr.io/lazauk/mslearn-mcp-hostedagentv2:v1.0.0 --image mslearn-mcp-hostedagentv2:v1
 ```
 
-This requires no local Docker installation and copies the image between GitHub and Azure cloud hostings.
+This doesn't require any local Docker installation and copies the image between GitHub and Azure cloud hostings.
 
 ## Part 4: Foundry Deployment
 
